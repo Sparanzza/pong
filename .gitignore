@@ -1,0 +1,10 @@
+# .NET Core
+PongBackend/bin/
+PongBackend/obj/
+
+# Node.js
+PongFrontend/node_modules/
+PongFrontend/dist/
+
+# VS Code
+.vscode/
