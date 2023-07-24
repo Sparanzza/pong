@@ -1,5 +1,4 @@
 import { Game } from './Game';
-console.log("Hi!")
 const canvas = document.getElementById('pongCanvas') as HTMLCanvasElement;
 const ctx = canvas.getContext('2d');
 

@@ -6,6 +6,7 @@ export class Ball {
     public dx: number;
     public dy: number;
     paddles: Paddle[];
+    onScore: (player: number) => void = () => {};
 
     constructor(private x: number, private y: number, private radius: number, private ctx: CanvasRenderingContext2D,  paddles : Paddle[]) {
                 this.position = { x: x, y: y };
@@ -25,7 +26,21 @@ export class Ball {
 
     update(){
         this.handleWallCollision()
-        this.handlePaddleCollision()    
+        this.handlePaddleCollision()   
+        console.log(this.x, this.radius) 
+          // If the ball hits the left edge of the screen
+          if (this.x - this.radius < 0) {
+            this.onScore(2); // Player 2 scores
+            console.log("hit 1!")
+            //this.reset();
+        }
+
+        // If the ball hits the right edge of the screen
+        if (this.x + this.radius > this.ctx.canvas.width) {
+            this.onScore(1); // Player 1 scores
+            console.log("hit 1!")
+            //this.reset();
+        }
     }
     handleWallCollision() {
         // Move the ball
@@ -41,6 +56,12 @@ export class Ball {
             this.dy = -this.dy; // reverse direction
         }
 
+    }
+
+    reset() {
+        this.position.x = this.ctx.canvas.width / 2;
+        this.position.y = this.ctx.canvas.height / 2;
+        // Possibly also reset velocity here for a fresh start
     }
 
     handlePaddleCollision() {
